@@ -107,9 +107,12 @@ resource "aws_kinesis_firehose_delivery_stream" "main" {
             parameter_value = "${var.dynamic_partitioning_lambda_transformer_function_arn}:$LATEST"
           }
 
-          parameters {
-            parameter_name  = "BufferSizeInMBs"
-            parameter_value = var.dynamic_partitioning_lambda_buffer_size
+          dynamic "parameters" {
+            for_each = var.dynamic_partitioning_processor_parameters
+            content {
+              parameter_name  = parameters.value.parameter_name
+              parameter_value = parameters.value.parameter_value
+            }
           }
         }
       }

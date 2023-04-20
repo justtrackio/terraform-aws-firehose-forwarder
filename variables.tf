@@ -109,10 +109,13 @@ variable "dynamic_partitioning_lambda_transformer_function_arn" {
   description = "ARN of the Lambda function to transform the data for dynamic partitioning"
 }
 
-variable "dynamic_partitioning_lambda_buffer_size" {
-  type        = number
-  default     = null
-  description = "Lambda transformer buffer size in MB"
+variable "dynamic_partitioning_processor_parameters" {
+  type = set(object({
+    parameter_name  = string
+    parameter_value = any
+  }))
+  default     = []
+  description = "Set of parameter for the dynamic partitioning processor"
 }
 
 variable "dynamic_partitioning_lambda_transformer_function_name" {
