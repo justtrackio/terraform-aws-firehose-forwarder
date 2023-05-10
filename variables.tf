@@ -22,6 +22,12 @@ variable "alarm_create" {
   description = "Whether or not to create alarms"
 }
 
+variable "alarm_topic_arn" {
+  type        = string
+  default     = null
+  description = "ARN of the AWS SNS topic for the CloudWatch alarms"
+}
+
 # read byes high alarm
 variable "alarm_read_bytes_high" {
   type = object({
@@ -41,6 +47,48 @@ variable "alarm_read_bytes_high" {
     threshold_percentage = 80
   }
   description = "Settings for the read bytes high alarm"
+}
+
+# write bytes high alarm
+variable "alarm_write_bytes_high" {
+  type = object({
+    create               = optional(bool, true)
+    period               = optional(number, 60)
+    evaluation_periods   = optional(number, 15)
+    alarm_description    = optional(string, "This metric monitors kinesis write bytes utilization")
+    datapoints_to_alarm  = optional(number, 10)
+    threshold_percentage = optional(number, 80)
+  })
+  default = {
+    create               = true
+    period               = 60
+    evaluation_periods   = 15
+    alarm_description    = "This metric monitors kinesis write bytes utilization"
+    datapoints_to_alarm  = 10
+    threshold_percentage = 80
+  }
+  description = "Settings for the write bytes high alarm"
+}
+
+# write records high alarm
+variable "alarm_write_records_high" {
+  type = object({
+    create               = optional(bool, true)
+    period               = optional(number, 60)
+    evaluation_periods   = optional(number, 15)
+    alarm_description    = optional(string, "This metric monitors kinesis write records utilization")
+    datapoints_to_alarm  = optional(number, 10)
+    threshold_percentage = optional(number, 80)
+  })
+  default = {
+    create               = true
+    period               = 60
+    evaluation_periods   = 15
+    alarm_description    = "This metric monitors kinesis write records utilization"
+    datapoints_to_alarm  = 10
+    threshold_percentage = 80
+  }
+  description = "Settings for the write records high alarm"
 }
 
 # iterator age alarm
@@ -83,6 +131,27 @@ variable "alarm_put_records" {
     threshold_percentage = 99
   }
   description = "Settings for the put records alarm"
+}
+
+# get records alarm
+variable "alarm_get_records" {
+  type = object({
+    create               = optional(bool, true)
+    period               = optional(number, 60)
+    evaluation_periods   = optional(number, 15)
+    alarm_description    = optional(string, "This metric monitors kinesis get records successful records (percent)")
+    datapoints_to_alarm  = optional(number, 10)
+    threshold_percentage = optional(number, 99)
+  })
+  default = {
+    create               = true
+    period               = 60
+    evaluation_periods   = 15
+    alarm_description    = "This metric monitors kinesis get records successful records (percent)"
+    datapoints_to_alarm  = 10
+    threshold_percentage = 99
+  }
+  description = "Settings for the get records alarm"
 }
 
 variable "kinesis_shard_count" {
