@@ -20,13 +20,16 @@ module "kinesis_stream" {
   context      = module.this.context
   label_orders = var.label_orders
 
-  shard_count      = var.kinesis_shard_count
-  retention_period = var.kinesis_retention_period
-  alarm_create     = var.alarm_create
-
-  alarm_read_bytes_high   = var.alarm_read_bytes_high
-  alarm_iterator_age_high = var.alarm_iterator_age_high
-  alarm_put_records       = var.alarm_put_records
+  shard_count              = var.kinesis_shard_count
+  retention_period         = var.kinesis_retention_period
+  alarm_create             = var.alarm_create
+  alarm_topic_arn          = var.alarm_topic_arn
+  alarm_read_bytes_high    = var.alarm_read_bytes_high
+  alarm_write_bytes_high   = var.alarm_write_bytes_high
+  alarm_write_records_high = var.alarm_write_records_high
+  alarm_iterator_age_high  = var.alarm_iterator_age_high
+  alarm_put_records        = var.alarm_put_records
+  alarm_get_records        = var.alarm_get_records
 }
 
 resource "aws_cloudwatch_log_group" "main" {
