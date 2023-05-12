@@ -7,20 +7,20 @@ Terraform module which creates a kinesis stream and a lambda function (with acce
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.40 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.67 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.40 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.67 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_iam_label"></a> [iam\_label](#module\_iam\_label) | cloudposse/label/null | 0.25.0 |
-| <a name="module_kinesis_stream"></a> [kinesis\_stream](#module\_kinesis\_stream) | justtrackio/kinesis/aws | 1.0.0 |
+| <a name="module_kinesis_stream"></a> [kinesis\_stream](#module\_kinesis\_stream) | justtrackio/kinesis/aws | 1.1.0 |
 | <a name="module_this"></a> [this](#module\_this) | justtrackio/label/null | 0.26.0 |
 
 ## Resources
