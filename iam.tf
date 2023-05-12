@@ -21,7 +21,7 @@ data "aws_iam_policy_document" "firehose_assume_role_policy" {
     condition {
       test     = "StringEquals"
       variable = "sts:ExternalId"
-      values   = [var.aws_account_id]
+      values   = [module.this.aws_account_id]
     }
   }
 }

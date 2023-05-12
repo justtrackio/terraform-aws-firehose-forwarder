@@ -7,13 +7,13 @@ Terraform module which creates a kinesis stream and a lambda function (with acce
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.30.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.40 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.30.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.40 |
 
 ## Modules
 
@@ -21,7 +21,7 @@ Terraform module which creates a kinesis stream and a lambda function (with acce
 |------|--------|---------|
 | <a name="module_iam_label"></a> [iam\_label](#module\_iam\_label) | cloudposse/label/null | 0.25.0 |
 | <a name="module_kinesis_stream"></a> [kinesis\_stream](#module\_kinesis\_stream) | justtrackio/kinesis/aws | 1.0.0 |
-| <a name="module_this"></a> [this](#module\_this) | cloudposse/label/null | 0.25.0 |
+| <a name="module_this"></a> [this](#module\_this) | justtrackio/label/null | 0.26.0 |
 
 ## Resources
 
@@ -58,7 +58,8 @@ Terraform module which creates a kinesis stream and a lambda function (with acce
 | <a name="input_alarm_write_bytes_high"></a> [alarm\_write\_bytes\_high](#input\_alarm\_write\_bytes\_high) | Settings for the write bytes high alarm | <pre>object({<br>    create               = optional(bool, true)<br>    period               = optional(number, 60)<br>    evaluation_periods   = optional(number, 15)<br>    alarm_description    = optional(string, "This metric monitors kinesis write bytes utilization")<br>    datapoints_to_alarm  = optional(number, 10)<br>    threshold_percentage = optional(number, 80)<br>  })</pre> | <pre>{<br>  "alarm_description": "This metric monitors kinesis write bytes utilization",<br>  "create": true,<br>  "datapoints_to_alarm": 10,<br>  "evaluation_periods": 15,<br>  "period": 60,<br>  "threshold_percentage": 80<br>}</pre> | no |
 | <a name="input_alarm_write_records_high"></a> [alarm\_write\_records\_high](#input\_alarm\_write\_records\_high) | Settings for the write records high alarm | <pre>object({<br>    create               = optional(bool, true)<br>    period               = optional(number, 60)<br>    evaluation_periods   = optional(number, 15)<br>    alarm_description    = optional(string, "This metric monitors kinesis write records utilization")<br>    datapoints_to_alarm  = optional(number, 10)<br>    threshold_percentage = optional(number, 80)<br>  })</pre> | <pre>{<br>  "alarm_description": "This metric monitors kinesis write records utilization",<br>  "create": true,<br>  "datapoints_to_alarm": 10,<br>  "evaluation_periods": 15,<br>  "period": 60,<br>  "threshold_percentage": 80<br>}</pre> | no |
 | <a name="input_attributes"></a> [attributes](#input\_attributes) | ID element. Additional attributes (e.g. `workers` or `cluster`) to add to `id`,<br>in the order they appear in the list. New attributes are appended to the<br>end of the list. The elements of the list are joined by the `delimiter`<br>and treated as a single ID element. | `list(string)` | `[]` | no |
-| <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | AWS Account ID | `string` | n/a | yes |
+| <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | AWS account id | `string` | `null` | no |
+| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS region | `string` | `null` | no |
 | <a name="input_buffer_interval"></a> [buffer\_interval](#input\_buffer\_interval) | (Optional) Buffer incoming data for the specified period of time, in seconds, before delivering it to the destination. The default value is 300. | `number` | `300` | no |
 | <a name="input_context"></a> [context](#input\_context) | Single object for setting entire context at once.<br>See description of individual variables for details.<br>Leave string and numeric variables as `null` to use default value.<br>Individual variable settings (non-null) override settings in context object,<br>except for attributes, tags, and additional\_tag\_map, which are merged. | `any` | <pre>{<br>  "additional_tag_map": {},<br>  "attributes": [],<br>  "delimiter": null,<br>  "descriptor_formats": {},<br>  "enabled": true,<br>  "environment": null,<br>  "id_length_limit": null,<br>  "label_key_case": null,<br>  "label_order": [],<br>  "label_value_case": null,<br>  "labels_as_tags": [<br>    "unset"<br>  ],<br>  "name": null,<br>  "namespace": null,<br>  "regex_replace_chars": null,<br>  "stage": null,<br>  "tags": {},<br>  "tenant": null<br>}</pre> | no |
 | <a name="input_delimiter"></a> [delimiter](#input\_delimiter) | Delimiter to be used between ID elements.<br>Defaults to `-` (hyphen). Set to `""` to use no delimiter at all. | `string` | `null` | no |
@@ -86,6 +87,7 @@ Terraform module which creates a kinesis stream and a lambda function (with acce
 | <a name="input_log_group_retention_in_days"></a> [log\_group\_retention\_in\_days](#input\_log\_group\_retention\_in\_days) | (Optional) Specifies the number of days you want to retain log events in the specified log group. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in the log group are always retained and never expire. Defaults to 30 Days. | `number` | `30` | no |
 | <a name="input_name"></a> [name](#input\_name) | ID element. Usually the component or solution name, e.g. 'app' or 'jenkins'.<br>This is the only ID element not also included as a `tag`.<br>The "name" tag is set to the full `id` string. There is no tag with the value of the `name` input. | `string` | `null` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | ID element. Usually an abbreviation of your organization name, e.g. 'eg' or 'cp', to help ensure generated IDs are globally unique | `string` | `null` | no |
+| <a name="input_organizational_unit"></a> [organizational\_unit](#input\_organizational\_unit) | Usually used to indicate the AWS organizational unit, e.g. 'prod', 'sdlc' | `string` | `null` | no |
 | <a name="input_regex_replace_chars"></a> [regex\_replace\_chars](#input\_regex\_replace\_chars) | Terraform regular expression (regex) string.<br>Characters matching the regex will be removed from the ID elements.<br>If not set, `"/[^a-zA-Z0-9-]/"` is used to remove all characters other than hyphens, letters and digits. | `string` | `null` | no |
 | <a name="input_s3_bucket_arn"></a> [s3\_bucket\_arn](#input\_s3\_bucket\_arn) | ARN of the S3 Bucket to put the kinesis datastream data into | `string` | n/a | yes |
 | <a name="input_s3_model_suffix"></a> [s3\_model\_suffix](#input\_s3\_model\_suffix) | Suffix to use for datalake key | `string` | `""` | no |
