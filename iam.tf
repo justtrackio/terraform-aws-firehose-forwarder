@@ -1,6 +1,6 @@
 module "iam_label" {
-  source  = "cloudposse/label/null"
-  version = "0.25.0"
+  source  = "justtrackio/label/null"
+  version = "0.26.0"
 
   context     = module.this.context
   label_order = var.label_orders.iam
@@ -21,7 +21,7 @@ data "aws_iam_policy_document" "firehose_assume_role_policy" {
     condition {
       test     = "StringEquals"
       variable = "sts:ExternalId"
-      values   = [var.aws_account_id]
+      values   = [module.this.aws_account_id]
     }
   }
 }
