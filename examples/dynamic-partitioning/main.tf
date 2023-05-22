@@ -7,7 +7,7 @@ module "example" {
   name        = "kinesis"
   attributes  = ["foo"]
 
-  alarm_create                                          = false
+  alarm_enabled                                         = false
   aws_account_id                                        = "123456789012"
   dynamic_partitioning_enabled                          = true
   dynamic_partitioning_lambda_transformer_function_arn  = "arn:aws:lambda:eu-central-1:123456789012:function:bla-firehose-transformer-foo"

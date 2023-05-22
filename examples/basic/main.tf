@@ -7,7 +7,7 @@ module "example" {
   name        = "kinesis"
   attributes  = ["foo"]
 
-  alarm_create                           = false
+  alarm_enabled                          = false
   aws_account_id                         = "123456789012"
   glue_database_name                     = "db"
   glue_table_name                        = "table"

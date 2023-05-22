@@ -15,14 +15,14 @@ module "kinesis_stream" {
   count = module.this.enabled ? 1 : 0
 
   source  = "justtrackio/kinesis/aws"
-  version = "1.0.1"
+  version = "1.0.2"
 
   context      = module.this.context
   label_orders = var.label_orders
 
   shard_count              = var.kinesis_shard_count
   retention_period         = var.kinesis_retention_period
-  alarm_create             = var.alarm_create
+  alarm_enabled            = var.alarm_enabled
   alarm_topic_arn          = var.alarm_topic_arn
   alarm_read_bytes_high    = var.alarm_read_bytes_high
   alarm_write_bytes_high   = var.alarm_write_bytes_high
