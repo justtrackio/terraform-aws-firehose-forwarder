@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/justtrackio/terraform-aws-firehose-forwarder/compare/v1.2.0...v1.2.1) (2023-05-22)
+
+
+### Bug Fixes
+
+* adjust alarm toggle variable ([#14](https://github.com/justtrackio/terraform-aws-firehose-forwarder/issues/14)) ([e546c7d](https://github.com/justtrackio/terraform-aws-firehose-forwarder/commit/e546c7df62d4f7bca9cdf62ac0f55b124472dc58))
+
 ## [1.2.0](https://github.com/justtrackio/terraform-aws-firehose-forwarder/compare/v1.1.1...v1.2.0) (2023-05-15)
 
 
