@@ -15,7 +15,7 @@ module "kinesis_stream" {
   count = module.this.enabled ? 1 : 0
 
   source  = "justtrackio/kinesis/aws"
-  version = "1.0.2"
+  version = "1.2.0"
 
   context      = module.this.context
   label_orders = var.label_orders
